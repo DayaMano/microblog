@@ -1,0 +1,10 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+*.iml
+.idea/
+*.iws
+.DS_Store
+*.log
+*.env
+# .gitattributes — keep line endings consistent
+*.cmd text eol=crlf
