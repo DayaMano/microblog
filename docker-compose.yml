@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  postgres:                                   # Service name - other containers can refer to this service by this name
+    image: postgres:17-alpine                 # Docker image to pull from Docker Hub
+    container_name: microblog-postgres        # Container name
+    environment:                              # Env vars the postgres image reads on first startup
+      POSTGRES_USER: microblog                # DB superuser name (like creating a role in psql)
+      POSTGRES_PASSWORD: microblog            # DB superuser password
+      POSTGRES_DB: microblog_users            # Database name to create on first startup
+    ports:
+      - "5432:5432"                           # left = your Mac's port, right = container's port
+    volumes:
+      - pgdata:/var/lib/postgresql/data       # Name volume - keeps the data alive across restarts
+  
+  redis:
+    image: redis:7-alpine
+    container_name: microblog-redis
+    ports:
+      - "6379:6379"
+    
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: microblog-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@microblog.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+
+volumes:
+  pgdata:
