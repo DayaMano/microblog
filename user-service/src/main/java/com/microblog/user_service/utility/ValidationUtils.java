@@ -8,7 +8,7 @@ public class ValidationUtils {
 
     // Checks if the input contains only letters and digits
     public static boolean isAlphanumeric(String input) {
-        return input != null && input.matches("^[a-zA-Z0-9]+$");
+        return input != null && input.matches("^[a-zA-Z0-9 ]+$");
     }
 
     // Checks if the input is a valid email format
